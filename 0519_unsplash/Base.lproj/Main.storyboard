@@ -58,7 +58,7 @@
                                         <rect key="frame" x="177" y="307" width="20" height="20"/>
                                     </activityIndicatorView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="F80-ZO-bkS" firstAttribute="leading" secondItem="bRj-9g-B2M" secondAttribute="leading" id="0zv-qd-rFa"/>
                                     <constraint firstItem="RJJ-oa-s59" firstAttribute="centerX" secondItem="L1X-Lz-l0M" secondAttribute="centerX" id="4ro-4l-v80"/>
@@ -186,9 +186,6 @@
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
