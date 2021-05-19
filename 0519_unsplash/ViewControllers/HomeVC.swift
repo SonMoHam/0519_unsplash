@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeVC: UIViewController {
+class HomeVC: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var searchFilterSegment: UISegmentedControl!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -66,6 +66,11 @@ class HomeVC: UIViewController {
         self.searchBar.becomeFirstResponder()
         // 포커싱 해제
 //        self.searchBar.resignFirstResponder()
+    }
+    
+    //MARK: - UISearchBar Delegate methods
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("HomeVC - searchBar textDidChange() / searchText = \(searchText)")
     }
 }
 
