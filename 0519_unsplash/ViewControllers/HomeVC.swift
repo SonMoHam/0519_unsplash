@@ -26,7 +26,7 @@ class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("HomeVC - prepare() called / segue.identifier : \(segue.identifier)")
+        print("HomeVC - prepare() called / segue.identifier : \(segue.identifier!)")
         
         switch segue.identifier {
         case SEGUE_ID.USER_LIST_VC:
@@ -38,24 +38,45 @@ class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate
         default:
             print("default")
         }
-        
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("HomeVC - viewDidAppear() called")
+        self.searchBar.becomeFirstResponder()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("HomeVC - viewWillAppear() called")
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShowHandle(notification:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHideHandle(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("HomeVC - viewWillDisappear() called")
+      
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
     // MARK: - fileprivate methods
     
     fileprivate func config() {
         self.searchButton.layer.cornerRadius = 10
-        
         self.searchBar.searchBarStyle = .minimal
         
         self.searchBar.delegate = self
-        
         self.keyboardDismissTabGesture.delegate = self
         
         // 제스처 추가
         self.view.addGestureRecognizer(keyboardDismissTabGesture)
-        self.searchBar.becomeFirstResponder()
     }
     
     
@@ -72,9 +93,30 @@ class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate
             print("default")
             segueId = "goToPhotoCollectionVC"
         }
-        
         // 화면 이동
         self.performSegue(withIdentifier: segueId, sender: self)
+    }
+    
+    @objc func keyboardWillShowHandle(notification: NSNotification) {
+        print("HomeVC - keyboardWillShowHandle() called")
+        
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            print("keyboardSize.height: \(keyboardSize.height)")
+            print("searchButton.frame.origin.y: \(searchButton.frame.origin.y)")
+            
+            if keyboardSize.height < searchButton.frame.origin.y {
+                print("키보드 버튼 가림")
+                self.view.frame.origin.y = keyboardSize.height - searchButton.frame.origin.y - searchButton.frame.height
+            }
+        }
+        
+        
+//        self.view.frame.origin.y = -100
+    }
+    
+    @objc func keyboardWillHideHandle(notification: NSNotification) {
+        print("HomeVC - keyboardWillHideHandle() called")
+        self.view.frame.origin.y = 0
     }
     
     // MARK: - IBAction methods
@@ -151,15 +193,13 @@ class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate
         } else if touch.view?.isDescendant(of: searchBar) == true {
             print("서치바 터치")
             return false
-        }
-        
-        else {
+        } else {
             view.endEditing(true)
             print("화면 터치")
             return true
         }
-        
-        
     }
+    
+    
 }
 
