@@ -24,6 +24,23 @@ class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate
         
         self.config()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("HomeVC - prepare() called / segue.identifier : \(segue.identifier)")
+        
+        switch segue.identifier {
+        case SEGUE_ID.USER_LIST_VC:
+            // 다음 화면 뷰컨트롤러 인스턴스
+            let nextVC = segue.destination as! UserListVC
+            guard let userInputValue = self.searchBar.text else { return }
+            
+            nextVC.vcTitle = userInputValue + " USER"
+        default:
+            print("default")
+        }
+        
+        
+    }
 
     // MARK: - fileprivate methods
     
