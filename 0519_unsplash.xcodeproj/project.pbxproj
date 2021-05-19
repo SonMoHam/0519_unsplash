@@ -13,6 +13,8 @@
 		127A27972654E8C20023DEC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 127A27952654E8C20023DEC7 /* Main.storyboard */; };
 		127A27992654E8C20023DEC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 127A27982654E8C20023DEC7 /* Assets.xcassets */; };
 		127A279C2654E8C20023DEC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 127A279A2654E8C20023DEC7 /* LaunchScreen.storyboard */; };
+		127A27A62654EB7F0023DEC7 /* UserListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127A27A52654EB7F0023DEC7 /* UserListVC.swift */; };
+		127A27A92654EBB70023DEC7 /* PhotoCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127A27A82654EBB70023DEC7 /* PhotoCollectionVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		127A27982654E8C20023DEC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		127A279B2654E8C20023DEC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		127A279D2654E8C20023DEC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		127A27A52654EB7F0023DEC7 /* UserListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListVC.swift; sourceTree = "<group>"; };
+		127A27A82654EBB70023DEC7 /* PhotoCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				127A27982654E8C20023DEC7 /* Assets.xcassets */,
 				127A279A2654E8C20023DEC7 /* LaunchScreen.storyboard */,
 				127A279D2654E8C20023DEC7 /* Info.plist */,
+				127A27A52654EB7F0023DEC7 /* UserListVC.swift */,
+				127A27A82654EBB70023DEC7 /* PhotoCollectionVC.swift */,
 			);
 			path = 0519_unsplash;
 			sourceTree = "<group>";
@@ -140,6 +146,8 @@
 				127A27942654E8C20023DEC7 /* HomeVC.swift in Sources */,
 				127A27902654E8C20023DEC7 /* AppDelegate.swift in Sources */,
 				127A27922654E8C20023DEC7 /* SceneDelegate.swift in Sources */,
+				127A27A62654EB7F0023DEC7 /* UserListVC.swift in Sources */,
+				127A27A92654EBB70023DEC7 /* PhotoCollectionVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

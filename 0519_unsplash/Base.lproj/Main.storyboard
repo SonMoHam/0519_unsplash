@@ -8,15 +8,27 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--HomeVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="_519_unsplash" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeVC" customModule="_519_unsplash" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="홈 뷰 컨트롤러" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1GM-sx-hGA">
+                                <rect key="frame" x="111" y="427.5" width="192" height="41"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="1GM-sx-hGA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kvs-dl-JgN"/>
+                            <constraint firstItem="1GM-sx-hGA" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wfq-Lt-NeN"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uQZ-kS-c4i"/>
                     <connections>
@@ -28,15 +40,27 @@
             </objects>
             <point key="canvasLocation" x="1050.7246376811595" y="128.57142857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--Photo CollectionVC-->
         <scene sceneID="gaj-H3-kYj">
             <objects>
-                <viewController id="Iou-jh-A9f" sceneMemberID="viewController">
+                <viewController id="Iou-jh-A9f" customClass="PhotoCollectionVC" customModule="_519_unsplash" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IpI-oC-Qkx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PhotoCollectionVC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZpX-YS-lNG">
+                                <rect key="frame" x="69" y="427.5" width="276" height="41"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="54N-MD-Wov"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ZpX-YS-lNG" firstAttribute="centerX" secondItem="IpI-oC-Qkx" secondAttribute="centerX" id="2Au-2C-UY6"/>
+                            <constraint firstItem="ZpX-YS-lNG" firstAttribute="centerY" secondItem="IpI-oC-Qkx" secondAttribute="centerY" id="Qyg-k4-Kjq"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pkY-4v-puq"/>
                 </viewController>
@@ -49,9 +73,12 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JWq-Gf-cE4" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nXg-GR-IYj">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="nXg-GR-IYj">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -62,15 +89,27 @@
             </objects>
             <point key="canvasLocation" x="140.57971014492756" y="128.57142857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--User ListVC-->
         <scene sceneID="iMs-Q2-GCd">
             <objects>
-                <viewController id="Lbb-2s-DrJ" sceneMemberID="viewController">
+                <viewController id="Lbb-2s-DrJ" customClass="UserListVC" customModule="_519_unsplash" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bYt-eh-7Gi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserListVC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMU-eW-V3l">
+                                <rect key="frame" x="123.5" y="427.5" width="167" height="41"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="naY-sn-fV3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="GMU-eW-V3l" firstAttribute="centerY" secondItem="bYt-eh-7Gi" secondAttribute="centerY" id="3oC-kh-QSP"/>
+                            <constraint firstItem="GMU-eW-V3l" firstAttribute="centerX" secondItem="bYt-eh-7Gi" secondAttribute="centerX" id="kZO-Mw-g8G"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3Qc-5a-vWh"/>
                 </viewController>
