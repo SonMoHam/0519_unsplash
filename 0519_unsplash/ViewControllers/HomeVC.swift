@@ -24,6 +24,8 @@ class HomeVC: UIViewController, UISearchBarDelegate {
         self.searchButton.layer.cornerRadius = 10
         
         self.searchBar.searchBarStyle = .minimal
+        
+        self.searchBar.delegate = self
     }
 
 
@@ -71,6 +73,14 @@ class HomeVC: UIViewController, UISearchBarDelegate {
     //MARK: - UISearchBar Delegate methods
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("HomeVC - searchBar textDidChange() / searchText = \(searchText)")
+        
+        if searchText.isEmpty {
+            self.searchButton.isHidden = true
+            // 포커싱 해제
+            searchBar.resignFirstResponder()
+        } else {
+            self.searchButton.isHidden = false
+        }
     }
 }
 

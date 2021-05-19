@@ -40,7 +40,7 @@
                                         <rect key="frame" x="0.0" y="223" width="374" height="56"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1X-Lz-l0M">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1X-Lz-l0M">
                                         <rect key="frame" x="147" y="297" width="80" height="40"/>
                                         <color key="backgroundColor" systemColor="systemPinkColor"/>
                                         <constraints>
@@ -54,7 +54,7 @@
                                             <action selector="onSearchButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WaI-78-ExI"/>
                                         </connections>
                                     </button>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="RJJ-oa-s59">
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="RJJ-oa-s59">
                                         <rect key="frame" x="177" y="307" width="20" height="20"/>
                                     </activityIndicatorView>
                                 </subviews>
