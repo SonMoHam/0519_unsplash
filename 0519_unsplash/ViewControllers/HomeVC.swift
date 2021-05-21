@@ -133,33 +133,41 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate {
         
         switch searchFilterSegment.selectedSegmentIndex {
         case 0:
-//            urlToCall = MySearchRouter.searchPhotos(term: userInput)
+            //            urlToCall = MySearchRouter.searchPhotos(term: userInput)
             MyAlamofireManager
-                .shared
-                .getPhotos(searchTerm: userInput, completion: { result in
-                    switch result {
-                    case .success(let fetchedPhotos):
-                        print("HomeVC - getPhotos.success - fetchedPhotos.count: \(fetchedPhotos.count)")
-                    case .failure(let error):
-                        print("HomeVC - getPhotos.failure - error: \(error.rawValue)")
-                    }
-            })
+                .shared  // 싱글톤 static 프로퍼티 접근
+                .getPhotos(searchTerm: userInput,
+                           
+                                        // 클로저 ARC 관련
+                                        // self 는 메모리 카운트 증가시킴
+                                        // weak self 사용, 메모리 가지고 있는 것 방지
+                           completion: { [weak self] result in
+                            guard let self = self else { return }
+                            
+                            switch result {
+                            case .success(let fetchedPhotos):
+                                print("HomeVC - getPhotos.success - fetchedPhotos.count: \(fetchedPhotos.count)")
+                            case .failure(let error):
+                                print("HomeVC - getPhotos.failure - error: \(error.rawValue)")
+                                self.view.makeToast("\(error.rawValue)", duration: 1.0, position: .center)
+                            }
+                           })
         case 1:
             urlToCall = MySearchRouter.searchUsers(term: userInput)
         default:
             print("default")
         }
         
-//        if let urlConvertible = urlToCall {
-//            MyAlamofireManager
-//                .shared                 // 싱글톤 static 프로퍼티 접근
-//                .session
-//                .request(urlConvertible)
-//                .validate(statusCode: 200...400)
-//                .responseJSON(completionHandler: { response in
-//                    debugPrint(response)
-//                })
-//        }
+        //        if let urlConvertible = urlToCall {
+        //            MyAlamofireManager
+        //                .shared                 // 싱글톤 static 프로퍼티 접근
+        //                .session
+        //                .request(urlConvertible)
+        //                .validate(statusCode: 200...400)
+        //                .responseJSON(completionHandler: { response in
+        //                    debugPrint(response)
+        //                })
+        //        }
         
         
         //        AF.request(url, method: .get, parameters: queryParam).responseJSON(completionHandler: { response in
