@@ -34,6 +34,14 @@ class BaseInterceptor: RequestInterceptor {
     func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
         print("BaseInterceptor - retry() called")
         
+        guard let statusCode = request.response?.statusCode else {
+            completion(.doNotRetry)
+            return
+            
+        }
+        let data = ["statusCode": statusCode]
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: NOTIFICATION.API.AUTH_FAIL), object: nil, userInfo: data)
+        
         completion(.doNotRetry)
     }
     

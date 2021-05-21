@@ -9,7 +9,7 @@ import UIKit
 import Toast_Swift
 import Alamofire
 
-class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate {
+class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var searchFilterSegment: UISegmentedControl!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -125,21 +125,38 @@ class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate
     @IBAction func onSearchButtonClicked(_ sender: UIButton) {
         print("HomeVC - onSearchButtonClicked() called / selectedIndex: \(self.searchFilterSegment.selectedSegmentIndex)")
         
-        let url = API.BASE_URL + "search/photos"
+        
+
+        //        let url = API.BASE_URL + "search/photos"
+        //        let queryParam = ["query": userInput, "client_id": API.CLIENT_ID]
+        
         guard let userInput = self.searchBar.text else { return }
+        var urlToCall: URLRequestConvertible?
         
-        let queryParam = ["query": userInput, "client_id": API.CLIENT_ID]
+        switch searchFilterSegment.selectedSegmentIndex {
+        case 0:
+            urlToCall = MySearchRouter.searchPhotos(term: userInput)
+        case 1:
+            urlToCall = MySearchRouter.searchUsers(term: userInput)
+        default:
+            print("default")
+        }
         
-        MyAlamofireManager
-            .shared
-            .session
-            .request(url)
-            .responseJSON(completionHandler: { response in
-                debugPrint(response)
-            })
-//        AF.request(url, method: .get, parameters: queryParam).responseJSON(completionHandler: { response in
-//            debugPrint(response)
-//        })
+        if let urlConvertible = urlToCall {
+            MyAlamofireManager
+                .shared                 // 싱글톤 static 프로퍼티 접근
+                .session
+                .request(urlConvertible)
+                .validate(statusCode: 200...400)
+                .responseJSON(completionHandler: { response in
+                    debugPrint(response)
+                })
+        }
+        
+        
+        //        AF.request(url, method: .get, parameters: queryParam).responseJSON(completionHandler: { response in
+        //            debugPrint(response)
+        //        })
         
         // 화면으로 이동
         //        pushVC()
