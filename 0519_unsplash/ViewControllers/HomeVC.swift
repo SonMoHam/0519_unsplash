@@ -7,9 +7,10 @@
 
 import UIKit
 import Toast_Swift
+import Alamofire
 
 class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate {
-
+    
     @IBOutlet weak var searchFilterSegment: UISegmentedControl!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchButton: UIButton!
@@ -44,7 +45,7 @@ class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate
         print("HomeVC - viewDidAppear() called")
         self.searchBar.becomeFirstResponder()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("HomeVC - viewWillAppear() called")
@@ -61,7 +62,7 @@ class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         print("HomeVC - viewWillDisappear() called")
-      
+        
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -111,7 +112,7 @@ class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate
         }
         
         
-//        self.view.frame.origin.y = -100
+        //        self.view.frame.origin.y = -100
     }
     
     @objc func keyboardWillHideHandle(notification: NSNotification) {
@@ -123,7 +124,17 @@ class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate
     
     @IBAction func onSearchButtonClicked(_ sender: UIButton) {
         print("HomeVC - onSearchButtonClicked() called / selectedIndex: \(self.searchFilterSegment.selectedSegmentIndex)")
-        pushVC()
+        
+        let url = API.BASE_URL + "search/photos"
+        guard let userInput = self.searchBar.text else { return }
+        
+        let queryParam = ["query": userInput, "client_id": API.CLIENT_ID]
+        AF.request(url, method: .get, parameters: queryParam).responseJSON(completionHandler: { response in
+            debugPrint(response)
+        })
+        
+        // 화면으로 이동
+        //        pushVC()
     }
     
     @IBAction func searchFilterValueChanged(_ sender: UISegmentedControl) {
@@ -142,14 +153,14 @@ class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate
         // 포커싱
         self.searchBar.becomeFirstResponder()
         // 포커싱 해제
-//        self.searchBar.resignFirstResponder()
+        //        self.searchBar.resignFirstResponder()
     }
     
     //MARK: - UISearchBar Delegate methods
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("HomeVC - searchBarSearchButtonClicked() called")
-    
+        
         guard let userInputString = searchBar.text else { return }
         if userInputString.isEmpty {
             self.view.makeToast("검색 키워드를 입력해주세요.", duration: 1.0, position: .center)
