@@ -18,6 +18,8 @@
 		127A27A62654EB7F0023DEC7 /* UserListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127A27A52654EB7F0023DEC7 /* UserListVC.swift */; };
 		127A27A92654EBB70023DEC7 /* PhotoCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127A27A82654EBB70023DEC7 /* PhotoCollectionVC.swift */; };
 		12B7B3292657896900146BE2 /* MyAlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B7B3282657896900146BE2 /* MyAlamofireManager.swift */; };
+		12B7B32D26578A2900146BE2 /* BaseInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B7B32C26578A2900146BE2 /* BaseInterceptor.swift */; };
+		12B7B33026578D2B00146BE2 /* MyLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B7B32F26578D2B00146BE2 /* MyLogger.swift */; };
 		8F8F50CCABAD90B4EC3961FA /* Pods_0519_unsplash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3E157B991A1E9995410EA9 /* Pods_0519_unsplash.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,8 @@
 		127A27A52654EB7F0023DEC7 /* UserListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListVC.swift; sourceTree = "<group>"; };
 		127A27A82654EBB70023DEC7 /* PhotoCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionVC.swift; sourceTree = "<group>"; };
 		12B7B3282657896900146BE2 /* MyAlamofireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAlamofireManager.swift; sourceTree = "<group>"; };
+		12B7B32C26578A2900146BE2 /* BaseInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInterceptor.swift; sourceTree = "<group>"; };
+		12B7B32F26578D2B00146BE2 /* MyLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLogger.swift; sourceTree = "<group>"; };
 		23EE7E51B143CD3721D1988A /* Pods-0519_unsplash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-0519_unsplash.release.xcconfig"; path = "Target Support Files/Pods-0519_unsplash/Pods-0519_unsplash.release.xcconfig"; sourceTree = "<group>"; };
 		6877FFDD580F1E06537BC3D3 /* Pods-0519_unsplash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-0519_unsplash.debug.xcconfig"; path = "Target Support Files/Pods-0519_unsplash/Pods-0519_unsplash.debug.xcconfig"; sourceTree = "<group>"; };
 		8E3E157B991A1E9995410EA9 /* Pods_0519_unsplash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_0519_unsplash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +122,8 @@
 			isa = PBXGroup;
 			children = (
 				12B7B3282657896900146BE2 /* MyAlamofireManager.swift */,
+				12B7B32F26578D2B00146BE2 /* MyLogger.swift */,
+				12B7B32C26578A2900146BE2 /* BaseInterceptor.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -246,10 +252,12 @@
 			files = (
 				127A27942654E8C20023DEC7 /* HomeVC.swift in Sources */,
 				127A27902654E8C20023DEC7 /* AppDelegate.swift in Sources */,
+				12B7B32D26578A2900146BE2 /* BaseInterceptor.swift in Sources */,
 				127A27922654E8C20023DEC7 /* SceneDelegate.swift in Sources */,
 				127A27A62654EB7F0023DEC7 /* UserListVC.swift in Sources */,
 				12B7B3292657896900146BE2 /* MyAlamofireManager.swift in Sources */,
 				127A27A92654EBB70023DEC7 /* PhotoCollectionVC.swift in Sources */,
+				12B7B33026578D2B00146BE2 /* MyLogger.swift in Sources */,
 				12320AC42655049000AEEA11 /* BaseVC.swift in Sources */,
 				12320AC12655032800AEEA11 /* Constants.swift in Sources */,
 			);

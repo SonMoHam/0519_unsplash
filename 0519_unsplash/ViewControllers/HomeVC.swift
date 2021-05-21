@@ -129,9 +129,17 @@ class HomeVC: UIViewController, UISearchBarDelegate, UIGestureRecognizerDelegate
         guard let userInput = self.searchBar.text else { return }
         
         let queryParam = ["query": userInput, "client_id": API.CLIENT_ID]
-        AF.request(url, method: .get, parameters: queryParam).responseJSON(completionHandler: { response in
-            debugPrint(response)
-        })
+        
+        MyAlamofireManager
+            .shared
+            .session
+            .request(url)
+            .responseJSON(completionHandler: { response in
+                debugPrint(response)
+            })
+//        AF.request(url, method: .get, parameters: queryParam).responseJSON(completionHandler: { response in
+//            debugPrint(response)
+//        })
         
         // 화면으로 이동
         //        pushVC()
