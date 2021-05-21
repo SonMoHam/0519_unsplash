@@ -125,8 +125,6 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate {
     @IBAction func onSearchButtonClicked(_ sender: UIButton) {
         print("HomeVC - onSearchButtonClicked() called / selectedIndex: \(self.searchFilterSegment.selectedSegmentIndex)")
         
-        
-
         //        let url = API.BASE_URL + "search/photos"
         //        let queryParam = ["query": userInput, "client_id": API.CLIENT_ID]
         

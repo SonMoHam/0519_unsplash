@@ -34,4 +34,16 @@ final class MyAlamofireManager {
             interceptor: interceptors,
             eventMonitors: monitors)
     }
+    
+    func getPhotos(searchTerm userInput: String, completion: @escaping (Result<[Photo], MyError>) -> Void) {
+        
+        print("MyAlamofireManager - getPhotos() called / userInput: \(userInput)")
+        
+        self.session
+            .request(MySearchRouter.searchPhotos(term: userInput))
+            .validate(statusCode: 200...400)
+            .responseJSON(completionHandler: { response in
+                debugPrint(response)
+            })
+    }
 }
