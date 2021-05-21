@@ -7,5 +7,6 @@ target '0519_unsplash' do
   
   # Pods for 0519_unsplash
   pod 'Toast-Swift', '~> 5.0.1'
+  pod 'Alamofire', '~> 5.2'
 
 end
