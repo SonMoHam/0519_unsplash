@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 final class MyAlamofireManager {
     
@@ -43,7 +44,34 @@ final class MyAlamofireManager {
             .request(MySearchRouter.searchPhotos(term: userInput))
             .validate(statusCode: 200...400)
             .responseJSON(completionHandler: { response in
-                debugPrint(response)
+                
+                guard let responseValue = response.value else { return }
+                
+                var photos = [Photo]()
+                let responseJson = JSON(responseValue)
+                
+                let jsonArray = responseJson["results"]
+                print("jsonArray.count: \(jsonArray.count)")
+                
+                for (index, subJson): (String, JSON) in jsonArray {
+                    print("index: \(index) , subJSON: \(subJson)")
+                    
+                    // 데이터 파싱
+                    let thumbnail = subJson["urls"]["thumb"].string ?? ""
+                    let username = subJson["user"]["username"].string ?? ""
+                    let likesCount = subJson["likes"].intValue
+                    let createdAt = subJson["created_at"].string ?? ""
+                    
+                    let photoItem = Photo(thumbnail: thumbnail, username: username, likesCount: likesCount, createdAt: createdAt)
+                    // 배열 배정
+                    photos.append(photoItem)
+                }
+                
+                if photos.count > 0 {
+                    completion(.success(photos))
+                } else {
+                    completion(.failure(.noContent))
+                }
             })
     }
 }
