@@ -74,4 +74,43 @@ final class MyAlamofireManager {
                 }
             })
     }
+    
+    func getUsers(searchTerm userInput: String, completion: @escaping (Result<[User], MyError>) -> Void) {
+        
+        print("MyAlamofireManager - getUsers() called / userInput: \(userInput)")
+        
+        self.session
+            .request(MySearchRouter.searchUsers(term: userInput))
+            .validate(statusCode: 200...400)
+            .responseJSON(completionHandler: { response in
+                
+                guard let responseValue = response.value else { return }
+                
+                var users = [User]()
+                let responseJson = JSON(responseValue)
+                
+                let jsonArray = responseJson["results"]
+                print("jsonArray.count: \(jsonArray.count)")
+                
+                for (index, subJson): (String, JSON) in jsonArray {
+                    print("index: \(index) , subJSON: \(subJson)")
+                    
+                    // 데이터 파싱
+                    let username = subJson["username"].string ?? ""
+                    let name = subJson["name"].string ?? ""
+                    let totalLikes = subJson["total_likes"].intValue
+                    let totalPhotos = subJson["total_photos"].intValue
+                    
+                    let userItem = User(username: username, name: name, totalLikes: totalLikes, totalPhotos: totalPhotos)
+                    // 배열 배정
+                    users.append(userItem)
+                }
+                
+                if users.count > 0 {
+                    completion(.success(users))
+                } else {
+                    completion(.failure(.noContent))
+                }
+            })
+    }
 }

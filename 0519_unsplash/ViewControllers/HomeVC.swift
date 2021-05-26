@@ -30,12 +30,18 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate {
         print("HomeVC - prepare() called / segue.identifier : \(segue.identifier!)")
         
         switch segue.identifier {
+        case SEGUE_ID.PHOTO_COLLECTION_VC:
+            let nextVC = segue.destination as! PhotoCollectionVC
+            guard let userInputValue = self.searchBar.text else { return }
+            
+            nextVC.vcTitle = "searchPhotos \n inputValue: " + userInputValue
+        
         case SEGUE_ID.USER_LIST_VC:
             // 다음 화면 뷰컨트롤러 인스턴스
             let nextVC = segue.destination as! UserListVC
             guard let userInputValue = self.searchBar.text else { return }
             
-            nextVC.vcTitle = userInputValue + " USER"
+            nextVC.vcTitle = "searchUsers \n inputValue: " + userInputValue
         default:
             print("default")
         }
@@ -96,6 +102,7 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate {
         }
         // 화면 이동
         self.performSegue(withIdentifier: segueId, sender: self)
+        
     }
     
     @objc func keyboardWillShowHandle(notification: NSNotification) {
@@ -129,7 +136,7 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate {
         //        let queryParam = ["query": userInput, "client_id": API.CLIENT_ID]
         
         guard let userInput = self.searchBar.text else { return }
-        var urlToCall: URLRequestConvertible?
+        //        var urlToCall: URLRequestConvertible?
         
         switch searchFilterSegment.selectedSegmentIndex {
         case 0:
@@ -138,22 +145,41 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate {
                 .shared  // 싱글톤 static 프로퍼티 접근
                 .getPhotos(searchTerm: userInput,
                            
-                                        // 클로저 ARC 관련
-                                        // self 는 메모리 카운트 증가시킴
-                                        // weak self 사용, 메모리 가지고 있는 것 방지
+                           // 클로저 ARC 관련
+                           // self 는 메모리 카운트 증가시킴
+                           // weak self 사용, 메모리 가지고 있는 것 방지
                            completion: { [weak self] result in
                             guard let self = self else { return }
                             
                             switch result {
                             case .success(let fetchedPhotos):
                                 print("HomeVC - getPhotos.success - fetchedPhotos.count: \(fetchedPhotos.count)")
+                                self.view.makeToast("success - fetchedPhotos.count: \(fetchedPhotos.count)", duration: 2.0, position: .center)
                             case .failure(let error):
                                 print("HomeVC - getPhotos.failure - error: \(error.rawValue)")
                                 self.view.makeToast("\(error.rawValue)", duration: 1.0, position: .center)
                             }
                            })
         case 1:
-            urlToCall = MySearchRouter.searchUsers(term: userInput)
+            MyAlamofireManager
+                .shared  // 싱글톤 static 프로퍼티 접근
+                .getUsers(searchTerm: userInput,
+                          
+                          // 클로저 ARC 관련
+                          // self 는 메모리 카운트 증가시킴
+                          // weak self 사용, 메모리 가지고 있는 것 방지
+                          completion: { [weak self] result in
+                            guard let self = self else { return }
+                            
+                            switch result {
+                            case .success(let fetchedUsers):
+                                print("HomeVC - getUsers.success - fetchedUsers.count: \(fetchedUsers.count)")
+                                self.view.makeToast("success - fetchedUsers.count: \(fetchedUsers.count)", duration: 2.0, position: .center)
+                            case .failure(let error):
+                                print("HomeVC - getUsers.failure - error: \(error.rawValue)")
+                                self.view.makeToast("\(error.rawValue)", duration: 1.0, position: .center)
+                            }
+                          })
         default:
             print("default")
         }

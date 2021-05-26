@@ -9,7 +9,7 @@ import Foundation
 
 enum SEGUE_ID {
     static let USER_LIST_VC = "goToUserListVC"
-    static let PHOTO_COLLECTION_VC = "gotoPhotoCollectionVC"
+    static let PHOTO_COLLECTION_VC = "goToPhotoCollectionVC"
 }
 
 enum API {
@@ -20,5 +20,9 @@ enum API {
 enum NOTIFICATION {
     enum API {
         static let AUTH_FAIL = "authentication - fail"
+    }
+    enum VC_NAME {
+        static let USER_LIST_VC = "UserListNotification"
+        static let PHOTO_COLLECTION_VC = "PhotoCollectionNotification"
     }
 }
