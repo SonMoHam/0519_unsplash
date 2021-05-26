@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		12320AC12655032800AEEA11 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12320AC02655032800AEEA11 /* Constants.swift */; };
 		12320AC42655049000AEEA11 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12320AC32655049000AEEA11 /* BaseVC.swift */; };
+		1269EC8C265E138C00240824 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1269EC8B265E138C00240824 /* User.swift */; };
 		127A27902654E8C20023DEC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127A278F2654E8C20023DEC7 /* AppDelegate.swift */; };
 		127A27922654E8C20023DEC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127A27912654E8C20023DEC7 /* SceneDelegate.swift */; };
 		127A27942654E8C20023DEC7 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127A27932654E8C20023DEC7 /* HomeVC.swift */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		12320AC02655032800AEEA11 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		12320AC32655049000AEEA11 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
+		1269EC8B265E138C00240824 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		127A278C2654E8C20023DEC7 /* 0519_unsplash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 0519_unsplash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		127A278F2654E8C20023DEC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		127A27912654E8C20023DEC7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				12B7B33A26579E5900146BE2 /* Photo.swift */,
+				1269EC8B265E138C00240824 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				12B7B32D26578A2900146BE2 /* BaseInterceptor.swift in Sources */,
 				127A27922654E8C20023DEC7 /* SceneDelegate.swift in Sources */,
 				12B7B3362657905E00146BE2 /* MySearchRouter.swift in Sources */,
+				1269EC8C265E138C00240824 /* User.swift in Sources */,
 				127A27A62654EB7F0023DEC7 /* UserListVC.swift in Sources */,
 				12B7B3292657896900146BE2 /* MyAlamofireManager.swift in Sources */,
 				127A27A92654EBB70023DEC7 /* PhotoCollectionVC.swift in Sources */,
