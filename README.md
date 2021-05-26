@@ -4,6 +4,7 @@
 Alamofire 통해 unsplash 사이트에 
 
 GET search/users
+
 GET search/photos
 요청을 보내어
 
