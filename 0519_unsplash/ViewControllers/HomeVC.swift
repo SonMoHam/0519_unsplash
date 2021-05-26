@@ -17,7 +17,7 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate {
     @IBOutlet weak var searchIndicator: UIActivityIndicatorView!
     
     var keyboardDismissTabGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: nil)
-    
+    var resultCount = 0
     // MARK: - override method
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,15 +33,15 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate {
         case SEGUE_ID.PHOTO_COLLECTION_VC:
             let nextVC = segue.destination as! PhotoCollectionVC
             guard let userInputValue = self.searchBar.text else { return }
+            nextVC.paramSearchCount = resultCount
+            nextVC.vcTitle = "photo 검색 / " + userInputValue
             
-            nextVC.vcTitle = "searchPhotos \n inputValue: " + userInputValue
-        
         case SEGUE_ID.USER_LIST_VC:
             // 다음 화면 뷰컨트롤러 인스턴스
             let nextVC = segue.destination as! UserListVC
             guard let userInputValue = self.searchBar.text else { return }
-            
-            nextVC.vcTitle = "searchUsers \n inputValue: " + userInputValue
+            nextVC.paramSearchCount = resultCount
+            nextVC.vcTitle = "user 검색 / " + userInputValue
         default:
             print("default")
         }
@@ -155,11 +155,14 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate {
                             case .success(let fetchedPhotos):
                                 print("HomeVC - getPhotos.success - fetchedPhotos.count: \(fetchedPhotos.count)")
                                 self.view.makeToast("success - fetchedPhotos.count: \(fetchedPhotos.count)", duration: 2.0, position: .center)
+                                self.resultCount = fetchedPhotos.count
+                                self.pushVC()
                             case .failure(let error):
                                 print("HomeVC - getPhotos.failure - error: \(error.rawValue)")
                                 self.view.makeToast("\(error.rawValue)", duration: 1.0, position: .center)
                             }
                            })
+            
         case 1:
             MyAlamofireManager
                 .shared  // 싱글톤 static 프로퍼티 접근
@@ -175,6 +178,8 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate {
                             case .success(let fetchedUsers):
                                 print("HomeVC - getUsers.success - fetchedUsers.count: \(fetchedUsers.count)")
                                 self.view.makeToast("success - fetchedUsers.count: \(fetchedUsers.count)", duration: 2.0, position: .center)
+                                self.resultCount = fetchedUsers.count
+                                self.pushVC()
                             case .failure(let error):
                                 print("HomeVC - getUsers.failure - error: \(error.rawValue)")
                                 self.view.makeToast("\(error.rawValue)", duration: 1.0, position: .center)
@@ -232,7 +237,56 @@ class HomeVC: BaseVC, UISearchBarDelegate, UIGestureRecognizerDelegate {
         if userInputString.isEmpty {
             self.view.makeToast("검색 키워드를 입력해주세요.", duration: 1.0, position: .center)
         } else {
-            pushVC()
+            switch searchFilterSegment.selectedSegmentIndex {
+            case 0:
+                //            urlToCall = MySearchRouter.searchPhotos(term: userInput)
+                MyAlamofireManager
+                    .shared  // 싱글톤 static 프로퍼티 접근
+                    .getPhotos(searchTerm: userInputString,
+                               
+                               // 클로저 ARC 관련
+                               // self 는 메모리 카운트 증가시킴
+                               // weak self 사용, 메모리 가지고 있는 것 방지
+                               completion: { [weak self] result in
+                                guard let self = self else { return }
+                                
+                                switch result {
+                                case .success(let fetchedPhotos):
+                                    print("HomeVC - getPhotos.success - fetchedPhotos.count: \(fetchedPhotos.count)")
+                                    self.view.makeToast("success - fetchedPhotos.count: \(fetchedPhotos.count)", duration: 2.0, position: .center)
+                                    self.resultCount = fetchedPhotos.count
+                                    self.pushVC()
+                                case .failure(let error):
+                                    print("HomeVC - getPhotos.failure - error: \(error.rawValue)")
+                                    self.view.makeToast("\(error.rawValue)", duration: 1.0, position: .center)
+                                }
+                               })
+                
+            case 1:
+                MyAlamofireManager
+                    .shared  // 싱글톤 static 프로퍼티 접근
+                    .getUsers(searchTerm: userInputString,
+                              
+                              // 클로저 ARC 관련
+                              // self 는 메모리 카운트 증가시킴
+                              // weak self 사용, 메모리 가지고 있는 것 방지
+                              completion: { [weak self] result in
+                                guard let self = self else { return }
+                                
+                                switch result {
+                                case .success(let fetchedUsers):
+                                    print("HomeVC - getUsers.success - fetchedUsers.count: \(fetchedUsers.count)")
+                                    self.view.makeToast("success - fetchedUsers.count: \(fetchedUsers.count)", duration: 2.0, position: .center)
+                                    self.resultCount = fetchedUsers.count
+                                    self.pushVC()
+                                case .failure(let error):
+                                    print("HomeVC - getUsers.failure - error: \(error.rawValue)")
+                                    self.view.makeToast("\(error.rawValue)", duration: 1.0, position: .center)
+                                }
+                              })
+            default:
+                print("default")
+            }
             searchBar.resignFirstResponder()
         }
     }

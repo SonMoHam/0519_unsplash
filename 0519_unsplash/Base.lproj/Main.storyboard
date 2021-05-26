@@ -122,6 +122,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pkY-4v-puq"/>
+                    <connections>
+                        <outlet property="searchPhotoCountLbl" destination="ZpX-YS-lNG" id="eSG-E3-2So"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LPf-vp-lDw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -171,6 +174,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3Qc-5a-vWh"/>
+                    <connections>
+                        <outlet property="searchUserCountLbl" destination="GMU-eW-V3l" id="glB-2p-Fk3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PGV-g1-zVc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
